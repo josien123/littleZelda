@@ -1,6 +1,6 @@
 # LittleZelda
 
-Small Java text-adventure project.
+Small Java text-adventure project for CSA jan 16.
 
 ## Local setup
 
