@@ -4,9 +4,9 @@
 - [x] update read me with class diagram
 - [ ] clean up input and output
 - [ ] validate input
-- [ ] do use method
-- [ ] do matching items method
-- [ ] make game completable
+- [x] do use method
+- [x] do matching items method
+- [x] make game completable
 
 ## Extras
 - [ ] talk to npcs method
