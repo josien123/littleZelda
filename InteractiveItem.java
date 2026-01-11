@@ -1,12 +1,12 @@
-public class InteractiveItem{
+public class InteractiveItem {
 
-  //variables-----------------------------------------------------------------------------------------------------------
-  
+  // variables-----------------------------------------------------------------------------------------------------------
+
   private String name;
   private String description;
   private String matchingItem;
 
-  //constructors--------------------------------------------------------------------------------------------------------
+  // constructors--------------------------------------------------------------------------------------------------------
 
   public InteractiveItem() {
     this.name = "unknown";
@@ -14,8 +14,14 @@ public class InteractiveItem{
     this.matchingItem = "unknown";
   }
 
-  //getters and setters-------------------------------------------------------------------------------------------------
-  
+  public InteractiveItem(String name, String description, String matchingItem) {
+    this.name = name;
+    this.description = description;
+    this.matchingItem = matchingItem;
+  }
+  // getters and
+  // setters-------------------------------------------------------------------------------------------------
+
   public void setName(String name) {
     this.name = name;
   }
@@ -23,7 +29,7 @@ public class InteractiveItem{
   public String getName() {
     return this.name;
   }
-  
+
   public void setDescription(String description) {
     this.description = description;
   }
@@ -40,9 +46,9 @@ public class InteractiveItem{
     return this.matchingItem;
   }
 
-  //methods
-  
-  /*public boolean checkIfCanUseItem{
-    
-  }*/
+  // methods
+
+  public boolean checkIfIsMatch(String satchelItem) {
+    return this.getMatchingItem().compareTo(satchelItem) == 0;
+  }
 }
