@@ -9,7 +9,7 @@ public class InteractiveItem {
   // constructors--------------------------------------------------------------------------------------------------------
 
   public InteractiveItem() {
-    this.name = "unknown";
+    this.name = "";
     this.description = "unknown";
     this.matchingItem = "unknown";
   }

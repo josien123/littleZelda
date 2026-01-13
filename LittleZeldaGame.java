@@ -84,7 +84,7 @@ public class LittleZeldaGame {
     chest.setName("a golden chest");
     chest.setDescription("blah blah blah chest description");
     chest.setMatchingItem("key");
-    map[2][3].setInteractiveItem(chest);
+    map[1][0].setInteractiveItem(chest);
     map[3][1].addItem("key");
 
     // random location npcs----------------------------------------
@@ -115,6 +115,8 @@ public class LittleZeldaGame {
      */
 
     while (isPlayingGame) {
+      System.out.println("Your coordinates: " + mainPlayer.getXLoc() + ", " + mainPlayer.getYLoc());
+      System.out.println("Your health: " + mainPlayer.getHealth() + "/100");
       System.out.println("\nWhat would you like to do? Hint: type [help] for commands\n");
       direction = input.nextLine();
       switch (direction) {
@@ -264,14 +266,7 @@ public class LittleZeldaGame {
       }
 
       // test - take out later
-      /*
-       * System.out.println("Your coordinates: " + mainPlayer.getXLoc() + ", " +
-       * mainPlayer.getYLoc());
-       * System.out.println("korok coordinates: " + korok.getXLoc() + ", " +
-       * korok.getYLoc());
-       * System.out.println("hestu coordinates: " + hestu.getXLoc() + ", " +
-       * hestu.getYLoc());
-       */
+
       // System.out.println("chest coordinates: " + chest.getXLoc() + ", " +
       // mainPlayer.getYLoc());
 
@@ -297,7 +292,7 @@ public class LittleZeldaGame {
             break;
 
           case "Bokoblin":
-            mainPlayer.subtractHealth(50);
+            mainPlayer.subtractHealth(20);
             System.out.println(
                 "\nOH NO! Crap, you just stumbled upon a bokoblin and he lights you on fire! Your health decreased by 20.");
             break;
@@ -311,6 +306,7 @@ public class LittleZeldaGame {
         isPlayingGame = false;
         System.out.println("\nOop you died. Game over.");
       }
+      System.out.println();
     }
   }
   /*
@@ -322,10 +318,10 @@ public class LittleZeldaGame {
 
   // message that runs at the start of the game
   private void runIntro() {
-    String message = "Welcome to little zelda. You are at (2, 2)," + "\ntype name: ";
+    String message = "\n\n------------------------------------------------------\nWelcome to little zelda. You are at (2, 2)\ntype name: ";
     System.out.println(message);
     String name = input.nextLine();
-    System.out.println("hi " + name + ", welcome!");
+    System.out.println("\nhi " + name + "!");
   }
 
   // command that shows all the commands to the user

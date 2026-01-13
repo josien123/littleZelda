@@ -92,7 +92,14 @@ public class Location {
     if (items.isEmpty()) {
       return "no items";
     }
-    return "items: " + items.toString();
+
+    String locationItem = items.size() == 1 ? "item " : "items ";
+    for (String i : items) {
+      locationItem = locationItem + (i + " ");
+    }
+    return "the following " + locationItem.trim();
+
+    // return "items: " + items.toString();
   }
 
   public String getNonPlayableCharacterString() {
@@ -114,7 +121,7 @@ public class Location {
   // method----------------------------------------------------------------------------------------------
   @Override
   public String toString() {
-    return "\nYou are at " + this.name + ".\n" + this.description + "\nYou see " + getItemsString()
+    return "\nYou are at " + this.name + ",\n" + this.description + "\nYou see " + getItemsString()
         + getInteractiveItemString() + getNonPlayableCharacterString();
   }
 }
