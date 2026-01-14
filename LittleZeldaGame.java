@@ -26,10 +26,7 @@ public class LittleZeldaGame {
   private NonPlayableCharacter hestu = new NonPlayableCharacter();
   private NonPlayableCharacter bokoblin = new NonPlayableCharacter();
   private NonPlayableCharacter korok = new NonPlayableCharacter("korok seed", "Helpful");
-  private InteractiveItem chest = new InteractiveItem("a golden chest",
-      "A shiny golden chest that looks like it could hold something valuable",
-      "key");
-
+  private InteractiveItem chest = new InteractiveItem();
   // ----------------START METHOD-----------------
   public void start() {
 
@@ -70,22 +67,21 @@ public class LittleZeldaGame {
     korok.setName("Korok");
     korok.setXLoc(3);
     korok.setYLoc(3);
-    map[3][3] = new Location("a korok", "It's a small leaf animal thing and it wants to talk to you.");
-    map[3][3].setNonPlayableCharacter(korok);
-    map[3][3].setHasNPC(true);
-    map[2][1].addItem("korok seed");
+    map[0][2] = new Location("a korok", "It's a small leaf animal thing and it wants to talk to you.");
+    map[0][2].setNonPlayableCharacter(korok);
+    map[0][2].setHasNPC(true);
+    map[2][0].addItem("korok seed");
 
     // hard code main player---------------------------------------
     mainPlayer.addToSatchel("bread");
-    mainPlayer.addToSatchel("key"); // will have the korok have the key later-just for test now.
     mainPlayer.setHealth(96);
 
     // hard code interactive items---------------------------------
     chest.setName("a golden chest");
     chest.setDescription("blah blah blah chest description");
     chest.setMatchingItem("key");
-    map[1][0].setInteractiveItem(chest);
-    map[3][1].addItem("key");
+    map[0][0].setInteractiveItem(chest);
+    //map[3][1].addItem("key"); NEED TO REMOVE LATER
 
     // random location npcs----------------------------------------
     bokoblin.setName("Bokoblin");
@@ -94,7 +90,6 @@ public class LittleZeldaGame {
     // ensure bokoblin doesn't spawn on top of another npc or starting location
     while (map[bokoblinX][bokoblinY].getHasNPC() || map[bokoblinX][bokoblinY].getHasInteractiveItem()
         || (bokoblinX == PLAYER_STARTING_X_LOC && bokoblinY == PLAYER_STARTING_Y_LOC)) {
-      System.out.println("boko x = " + bokoblinX + " boko y = " + bokoblinY);
       bokoblinX = mapRandomInt(0, X_MAP_SIZE - 1);
       bokoblinY = mapRandomInt(0, Y_MAP_SIZE - 1);
     }
@@ -102,22 +97,19 @@ public class LittleZeldaGame {
         "Oh no! A bokoblin has set up camp here! He attacks you and your health decreases.");
     map[bokoblinX][bokoblinY].setNonPlayableCharacter(bokoblin);
     map[bokoblinX][bokoblinY].setHasNPC(true);
-    System.out.println("boko x = " + bokoblinX + " boko y = " + bokoblinY);// debug. take out later
   }
 
   private void gameLogic() {
 
     /*
      * 
-     * ----------------------------------------------------- MAIN GAME LOOP
-     * --------------------------------------------------------
+     * ----------------------------------------------------- MAIN GAME LOOP--------------------------------------------------------
      * 
      */
 
     while (isPlayingGame) {
       System.out.println("Your coordinates: " + mainPlayer.getXLoc() + ", " + mainPlayer.getYLoc());
       System.out.println("Your health: " + mainPlayer.getHealth() + "/100");
-      System.out.print("\nWhat would you like to do? Hint: type [help] for commands\n>");
       System.out.print("\nWhat would you like to do? Hint: type [help] for commands\n>");
       direction = input.nextLine();
       switch (direction) {
@@ -177,7 +169,6 @@ public class LittleZeldaGame {
          */
         case "use":
           System.out.print("\nwhat would you like to use?: \n>");
-          System.out.print("\nwhat would you like to use?: \n>");
           String itemToUse = input.nextLine();
           if (mainPlayer.checkIfInSatchel(itemToUse)) {
             switch (itemToUse) {
@@ -200,7 +191,7 @@ public class LittleZeldaGame {
                 if (korok.checkIfIsMatch("korok seed") && map[mainPlayer.getXLoc()][mainPlayer.getYLoc()].getHasInteractiveItem()) {
                   System.out.println("You gave the korok a korok seed! He seems happy to help you.");
                   System.out.println(
-                      "'Thanks for the seed! here's a hint to finding the maracas: they are in a chest around here somewhere. Find a key for you to open it!'");
+                      "'Thanks for the seed! here's a hint to finding the maracas: they are in a chest around here somewhere. Find a key for you to open it!'"); //NEED TO CHANGE TO KOROK GOIVES
                 } else {
                   System.out.println("The seed doesn't seem to work here.");
                 }
@@ -236,7 +227,6 @@ public class LittleZeldaGame {
           PICK UP: asks what would you like to pick up, removes item from map, adds item to inventory
           */
         case "pick up":
-          System.out.print("\nwhat would you like to pick up?: \n>");
           System.out.print("\nwhat would you like to pick up?: \n>");
           String itemPickedUp = input.nextLine();
           if (map[mainPlayer.getXLoc()][mainPlayer.getYLoc()].removeItem(itemPickedUp)) {

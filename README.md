@@ -1,6 +1,7 @@
 # LittleZelda
 
-Small Java text-adventure project for CSA jan 16.
+Small Java text-adventure project for CSA jan 16. 
+LittleZelda is a text base game with the goal of finding Hestu's maracas. to start type 'java LittleZeldagame'. First the player moves south to find hestu, who tells you to find his maracas. Then the player goes west to find a korok who will give information if given a korok seed. Player goes North to find the seed and brings it back to the korok. The korok gives a key and says it unlocks a chest. player goes North East to find and unlock the chest. use the maracas to win.
 
 ## Local setup
 
