@@ -324,8 +324,6 @@ public class LittleZeldaGame {
   private void runIntro() {
     String message = "\n\n------------------------------------------------------\nWelcome to little zelda. You are at (2, 2)\ntype name: \n>";
     System.out.print(message);
-    String message = "\n\n------------------------------------------------------\nWelcome to little zelda. You are at (2, 2)\ntype name: \n>";
-    System.out.print(message);
     String name = input.nextLine();
     System.out.println("\nhi " + name + "!");
   }
