@@ -202,7 +202,7 @@ public class LittleZeldaGame {
                   System.out.println(
                       "'Thanks for the seed! here's a hint to finding the maracas: they are in a chest around here somewhere. Find a key for you to open it!'");
                 } else {
-                  System.out.println("The korok doesn't seem interested in that.");
+                  System.out.println("The seed doesn't seem to work here.");
                 }
                 // korok talk
                 break;
@@ -229,6 +229,7 @@ public class LittleZeldaGame {
           */
         case "look":
           System.out.println(map[mainPlayer.getXLoc()][mainPlayer.getYLoc()].toString());
+          seeSurroundings();
           break;
 
         /*-------------------------------------------------------------------------------------------
@@ -348,6 +349,17 @@ public class LittleZeldaGame {
     int randomNumber = r.nextInt(max - min + 1) + min;
     // System.out.println(randomNumber);
     return randomNumber;
+  }
+
+  public void seeSurroundings() {
+    String seeNorth = (mainPlayer.getYLoc() - 1) < 0 ? "a cliff" : map[mainPlayer.getXLoc()][mainPlayer.getYLoc() - 1].getName();
+    String seeEast = (mainPlayer.getXLoc() + 1) > (X_MAP_SIZE - 1) ? "a cliff" : map[mainPlayer.getXLoc() + 1][mainPlayer.getYLoc()].getName();
+    String seeSouth = (mainPlayer.getYLoc() + 1) > (Y_MAP_SIZE - 1) ? "a cliff" : map[mainPlayer.getXLoc()][mainPlayer.getYLoc() + 1].getName();
+    String seeWest = (mainPlayer.getXLoc() - 1) < 0 ? "a cliff" : map[mainPlayer.getXLoc() - 1][mainPlayer.getYLoc()].getName();
+    
+    System.out.println("To the north you see " + seeNorth + ", to the east you see " + seeEast + ", to the south you see " + seeSouth
+        + ", and to the west you see " + seeWest + ".");
+    
   }
 
 }
