@@ -121,7 +121,14 @@ public class Location {
   // method----------------------------------------------------------------------------------------------
   @Override
   public String toString() {
-    return "\nYou are at " + this.name + ",\n" + this.description + "\nYou see " + getItemsString()
-        + getInteractiveItemString() + getNonPlayableCharacterString();
+    return "\n------------ you look around ------------\nYou are at " + this.name + ",\n" + this.description + "\nYou see " + getItemsString()
+        + getInteractiveItemString() + getNonPlayableCharacterString();// + "in the north you see" + Location[Player.getXLoc()][Player.getYLoc() - 1].getName() + "to the east you see" + Location[Player.getXLoc() - 1][Player.getYLoc()].getName() + "to the west you see" + Location[Player.getXLoc() + 1][Player.getYloc()].getName() + "to the south there is" + Location[Player.getXLoc()][Player.getYLoc() + ].getName();
+
+
   }
 }
+
+
+
+// "in the north you see" + map[mainPlayer.getXloc][mainPlayer.getYloc - 1].getname + "to the east you see" + map[mainPlayer.getXloc -1][mainPlayer.getYloc].getname + "to the west you see" + map[mainPlayer.getXloc + 1][mainPlayer.getYloc].getname + "to the south there is" + map[mainPlayer.getXloc][mainPlayer.getYloc + 1].getname;
+//"in the north you see" + Location[Player.getXLoc()][Player.getYLoc() - 1].getName() + "to the east you see" + Location[Player.getXLoc() - 1][Player.getYLoc()].getName() + "to the west you see" + Location[Player.getXLoc() + 1][Player.getYloc()].getName() + "to the south there is" + Location[Player.getXLoc()][Player.getYLoc() + ].getName();

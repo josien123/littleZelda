@@ -1,21 +1,21 @@
 import java.util.ArrayList;
 
-public class Character{
+public class Character {
 
-//variables-----------------------------------------------------------------------------------------------------------
-  
+  // variables-----------------------------------------------------------------------------------------------------------
+
   private String name;
   private int xLoc;
   private int yLoc;
-  
-//constructors----------------------------------------------------------------------------------------------------------
-  
+
+  // constructors----------------------------------------------------------------------------------------------------------
+
   public Character() {
     this.name = "Unknown";
     this.xLoc = 2;
     this.yLoc = 2;
   }
-  
+
   public Character(String name) {
     this.name = name;
   }
@@ -25,9 +25,10 @@ public class Character{
     this.xLoc = xLoc;
     this.yLoc = yLoc;
   }
-  
-//getters and setters--------------------------------------------------------------------------------------------------
-  
+
+  // getters and
+  // setters--------------------------------------------------------------------------------------------------
+
   public void setName(String name) {
     this.name = name;
   }
@@ -52,17 +53,20 @@ public class Character{
     return this.yLoc;
   }
 
-//methods--------------------------------------------------------------------------------------------------------------
+  // methods--------------------------------------------------------------------------------------------------------------
 
   public void moveNorth() {
     yLoc--;
   }
+
   public void moveSouth() {
     yLoc++;
   }
+
   public void moveEast() {
     xLoc++;
   }
+
   public void moveWest() {
     xLoc--;
   }
