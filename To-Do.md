@@ -6,7 +6,7 @@
 - [ ] validate input
 - [ ] check fro any debugs
 - [ ] decide where final thing should go
-- [ ] fix bokoblin issue with items already there
+- [x] fix bokoblin issue with items already there
 - [x] do use method
 - [x] do matching items method
 - [x] make game completable

@@ -117,7 +117,7 @@ public class LittleZeldaGame {
     while (isPlayingGame) {
       System.out.println("Your coordinates: " + mainPlayer.getXLoc() + ", " + mainPlayer.getYLoc());
       System.out.println("Your health: " + mainPlayer.getHealth() + "/100");
-      System.out.println("\nWhat would you like to do? Hint: type [help] for commands\n");
+      System.out.print("\nWhat would you like to do? Hint: type [help] for commands\n>");
       direction = input.nextLine();
       switch (direction) {
 
@@ -175,7 +175,7 @@ public class LittleZeldaGame {
          * USE: asks what would you like to use, checks if in satchel, uses
          */
         case "use":
-          System.out.println("what would you like to use?: ");
+          System.out.print("\nwhat would you like to use?: \n>");
           String itemToUse = input.nextLine();
           if (mainPlayer.checkIfInSatchel(itemToUse)) {
             switch (itemToUse) {
@@ -185,7 +185,8 @@ public class LittleZeldaGame {
                 break;
               case "key":
                 mainPlayer.removeFromSatchel(itemToUse);
-                if (chest.checkIfIsMatch("key")) {
+                if (chest.checkIfIsMatch("key")
+                    && map[mainPlayer.getXLoc()][mainPlayer.getYLoc()].getHasInteractiveItem()) {
                   System.out.println("You used the key to open the chest! Inside you found the maracas!");
                   mainPlayer.addToSatchel("maracas");
                 } else {
@@ -195,7 +196,8 @@ public class LittleZeldaGame {
                 break;
               case "korok seed":
                 mainPlayer.removeFromSatchel(itemToUse);
-                if (korok.checkIfIsMatch("korok seed")) {
+                if (korok.checkIfIsMatch("korok seed")
+                    && map[mainPlayer.getXLoc()][mainPlayer.getYLoc()].getHasInteractiveItem()) {
                   System.out.println("You gave the korok a korok seed! He seems happy to help you.");
                   System.out.println(
                       "'Thanks for the seed! here's a hint to finding the maracas: they are in a chest around here somewhere. Find a key for you to open it!'");
@@ -233,7 +235,7 @@ public class LittleZeldaGame {
           PICK UP: asks what would you like to pick up, removes item from map, adds item to inventory
           */
         case "pick up":
-          System.out.println("what would you like to pick up?: ");
+          System.out.print("\nwhat would you like to pick up?: \n>");
           String itemPickedUp = input.nextLine();
           if (map[mainPlayer.getXLoc()][mainPlayer.getYLoc()].removeItem(itemPickedUp)) {
             mainPlayer.addToSatchel(itemPickedUp);
@@ -318,8 +320,8 @@ public class LittleZeldaGame {
 
   // message that runs at the start of the game
   private void runIntro() {
-    String message = "\n\n------------------------------------------------------\nWelcome to little zelda. You are at (2, 2)\ntype name: ";
-    System.out.println(message);
+    String message = "\n\n------------------------------------------------------\nWelcome to little zelda. You are at (2, 2)\ntype name: \n>";
+    System.out.print(message);
     String name = input.nextLine();
     System.out.println("\nhi " + name + "!");
   }
