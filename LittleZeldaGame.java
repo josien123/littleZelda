@@ -25,7 +25,6 @@ public class LittleZeldaGame {
   private InteractiveItem chest = new InteractiveItem();
   // ----------------START METHOD-----------------
   public void start() {
-
     createBlankMap();
     fillOutMap();
     runIntro();
@@ -73,27 +72,27 @@ public class LittleZeldaGame {
 
     // hard code main player---------------------------------------
     mainPlayer.addToSatchel("bread");
-    mainPlayer.setHealth(96);
+    mainPlayer.setHealth(90);
 
     // hard code interactive items---------------------------------
     chest.setName("a golden chest");
-    chest.setDescription("blah blah blah chest description");
+    chest.setDescription("a shiny, golden chest sits in front of you. It looks like it can be opened with a key.");
     chest.setMatchingItem("key");
     map[0][0].setInteractiveItem(chest);
     map[3][1].addItem("key");
 
-    // random location npcs----------------------------------------
+    // random location npc----------------------------------------
     bokoblin.setName("Bokoblin");
     int bokoblinX = mapRandomInt(0, X_MAP_SIZE - 1);
     int bokoblinY = mapRandomInt(0, Y_MAP_SIZE - 1);
     // ensure bokoblin doesn't spawn on top of another npc or starting location
     while (map[bokoblinX][bokoblinY].getHasNPC() || map[bokoblinX][bokoblinY].getHasInteractiveItem()
-        || (bokoblinX == PLAYER_STARTING_X_LOC && bokoblinY == PLAYER_STARTING_Y_LOC)) {
+        || (bokoblinX == PLAYER_STARTING_X_LOC && bokoblinY == PLAYER_STARTING_Y_LOC) ) {//NEED TO FIX THAT IT SPAWNED ON THE KEY AND COULD SPAWN ON THE KOROK SEED.
       bokoblinX = mapRandomInt(0, X_MAP_SIZE - 1);
       bokoblinY = mapRandomInt(0, Y_MAP_SIZE - 1);
     }
     map[bokoblinX][bokoblinY] = new Location("Bokoblin site",
-        "Oh no! A bokoblin has set up camp here! He attacks you and your health decreases.");
+        "...Oh no! A bokoblin has set up camp! ");
     map[bokoblinX][bokoblinY].setNonPlayableCharacter(bokoblin);
     map[bokoblinX][bokoblinY].setHasNPC(true);
   }
@@ -107,6 +106,7 @@ public class LittleZeldaGame {
      */
 
     while (isPlayingGame) {
+      seeSurroundings();
       System.out.println("Your coordinates: " + mainPlayer.getXLoc() + ", " + mainPlayer.getYLoc());
       System.out.println("Your health: " + mainPlayer.getHealth() + "/100");
       System.out.print("\nWhat would you like to do? Hint: type [help] for commands\n>");
@@ -178,7 +178,7 @@ public class LittleZeldaGame {
               case "key":
                 mainPlayer.removeFromSatchel(itemToUse);
                 if (chest.checkIfIsMatch("key") && map[mainPlayer.getXLoc()][mainPlayer.getYLoc()].getHasInteractiveItem()) {  
-                  System.out.println("You used the key to open the chest! Inside you found the maracas!");
+                  System.out.println("You used the key to open the chest! Inside you found the maracas! Maybe if you use them you can find Hestu.");
                   mainPlayer.addToSatchel("maracas");
                 } else {
                   System.out.println("The key doesn't seem to work here.");
@@ -187,7 +187,7 @@ public class LittleZeldaGame {
                 break;
               case "korok seed":
                 mainPlayer.removeFromSatchel(itemToUse);
-                if (korok.checkIfIsMatch("korok seed") && map[mainPlayer.getXLoc()][mainPlayer.getYLoc()].getHasInteractiveItem()) {
+                if (korok.checkIfIsMatch("korok seed") && map[mainPlayer.getXLoc()][mainPlayer.getYLoc()].getHasNPC()) {
                   System.out.println("You gave the korok a korok seed! He seems happy to help you.");
                   System.out.println(
                       "'Thanks for the seed! here's a hint to finding the maracas: they are in a chest around here somewhere. Find a key for you to open it!'");
@@ -206,7 +206,7 @@ public class LittleZeldaGame {
                 // hestu reward
                 break;
               default:
-                System.out.println("sorry, doesn't work");
+                System.out.println("Sorry, you can't use that item right now.");
             }
             System.out.println("used " + itemToUse);
           } else {
@@ -219,7 +219,6 @@ public class LittleZeldaGame {
           */
         case "look":
           System.out.println(map[mainPlayer.getXLoc()][mainPlayer.getYLoc()].toString());
-          seeSurroundings();
           break;
 
         /*-------------------------------------------------------------------------------------------
@@ -232,7 +231,7 @@ public class LittleZeldaGame {
             mainPlayer.addToSatchel(itemPickedUp);
             System.out.println("You've picked up the " + itemPickedUp + ". It is in your satchel.");
           } else {
-            System.out.println("Sorry, that doesn't work try again.");
+            System.out.println("Sorry, that doesn't seem to be here.");
           }
           break;
 
@@ -258,15 +257,9 @@ public class LittleZeldaGame {
           System.out.println("Uh you can't do that, try something else.");
       }
 
-      // test - take out later
-
-      // System.out.println("chest coordinates: " + chest.getXLoc() + ", " +
-      // mainPlayer.getYLoc());
-
       /*
        * 
-       * ---------------------------------------------- NPC ECOUNTER
-       * -------------------------------------------------
+       * ------------------------NPC ENCOUNTER----------------------------------
        * 
        */
 
@@ -291,27 +284,24 @@ public class LittleZeldaGame {
             break;
 
           default:
-            // logic?
-            // no npc here? unknown npc?
+            //no npc
         }
       }
       if (mainPlayer.getHealth() <= 0) {
         isPlayingGame = false;
         System.out.println("\nOop you died. Game over.");
       }
-      System.out.println();
     }
   }
   /*
    * 
-   * --------------------------------------------------- END OF GAME LOOP
-   * -------------------------------------------------------------------
+   * ---------------------------------END OF GAME LOOP-----------------------------------------------
    * 
    */
 
   // message that runs at the start of the game
   private void runIntro() {
-    String message = "\n\n------------------------------------------------------\nWelcome to little zelda. You are at (2, 2)\ntype name: \n>";
+    String message = "\n\n------------------------------------------------------\nWelcome to little zelda. It apears that someone is looking for their possesions. Help find them. You are at (2, 2)\ntype name: \n>";
     System.out.print(message);
     String name = input.nextLine();
     System.out.println("\nhi " + name + "!");
@@ -319,7 +309,7 @@ public class LittleZeldaGame {
 
   // command that shows all the commands to the user
   private void help() {
-    String message = "\n------------------------------------------------------\ncommamnds :\n\nmove north / move east / move south / move west\ncheck status / inventory / look / use / pick up / help\n\n------------------------------------------------------";
+    String message = "\n------------------------------------------------------\nyour commands :\n\nmove north / move east / move south / move west\ncheck status / inventory / look / use / pick up / help\n\n------------------------------------------------------";
     System.out.println(message);
   }
 
@@ -335,9 +325,7 @@ public class LittleZeldaGame {
 
   public int mapRandomInt(int min, int max) {
     Random r = new Random();
-    // System.out.println("Generated numbers are within "+ min +" to "+ max);
     int randomNumber = r.nextInt(max - min + 1) + min;
-    // System.out.println(randomNumber);
     return randomNumber;
   }
 

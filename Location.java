@@ -7,7 +7,7 @@ public class Location {
 
   private String name;
   private String description;
-  private ArrayList<String> items; // Using String for simplicity, or change to Item class
+  private ArrayList<String> items; // DO I NEED GET AND SET???
   private boolean hasNPC;
   private boolean hasInteractiveItem;
   private NonPlayableCharacter npc;
@@ -93,9 +93,9 @@ public class Location {
       return "no items";
     }
 
-    String locationItem = items.size() == 1 ? "item " : "items ";
+    String locationItem = items.size() == 1 ? "item (" : "items (";
     for (String i : items) {
-      locationItem = locationItem + (i + " ");
+      locationItem = locationItem + (i + ") ");
     }
     return "the following " + locationItem.trim();
 
@@ -121,14 +121,9 @@ public class Location {
   // method----------------------------------------------------------------------------------------------
   @Override
   public String toString() {
-    return "\n------------ you look around ------------\nYou are at " + this.name + ",\n" + this.description + "\nYou see " + getItemsString()
-        + getInteractiveItemString() + getNonPlayableCharacterString();// + "in the north you see" + Location[Player.getXLoc()][Player.getYLoc() - 1].getName() + "to the east you see" + Location[Player.getXLoc() - 1][Player.getYLoc()].getName() + "to the west you see" + Location[Player.getXLoc() + 1][Player.getYloc()].getName() + "to the south there is" + Location[Player.getXLoc()][Player.getYLoc() + ].getName();
+    return "\n------------ you look around ------------\n\nYou are at " + this.name + ",\n" + this.description + "\nYou see " + getItemsString()
+        + getInteractiveItemString() + getNonPlayableCharacterString() + "\n\n-----------------------------------------";
 
 
   }
 }
-
-
-
-// "in the north you see" + map[mainPlayer.getXloc][mainPlayer.getYloc - 1].getname + "to the east you see" + map[mainPlayer.getXloc -1][mainPlayer.getYloc].getname + "to the west you see" + map[mainPlayer.getXloc + 1][mainPlayer.getYloc].getname + "to the south there is" + map[mainPlayer.getXloc][mainPlayer.getYloc + 1].getname;
-//"in the north you see" + Location[Player.getXLoc()][Player.getYLoc() - 1].getName() + "to the east you see" + Location[Player.getXLoc() - 1][Player.getYLoc()].getName() + "to the west you see" + Location[Player.getXLoc() + 1][Player.getYloc()].getName() + "to the south there is" + Location[Player.getXLoc()][Player.getYLoc() + ].getName();

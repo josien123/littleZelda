@@ -43,7 +43,7 @@ public class Player extends Character{
     return satchelItems.remove(item);
   }
   public String checkStatus() {
-    return "<3 \nYour health is: " + health + "/100.\n <3";
+    return "<3 <3 <3 <3 <3 <3 <3 <3\nYour health is: " + health + "/100. \n<3 <3 <3 <3 <3 <3 <3 <3";
   }
     
   public void addHealth(int health){
