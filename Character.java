@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Character {
 
@@ -14,10 +13,6 @@ public class Character {
     this.name = "Unknown";
     this.xLoc = 2;
     this.yLoc = 2;
-  }
-
-  public Character(String name) {
-    this.name = name;
   }
 
   public Character(String name, int xLoc, int yLoc) {

@@ -14,10 +14,6 @@ public class LittleZeldaGame {
   // variables------------------------------------------------------------------------------------------------------
 
   private Location[][] map = new Location[X_MAP_SIZE][Y_MAP_SIZE];
-  private int playerXloc = PLAYER_STARTING_X_LOC;
-  private int playerYLoc = PLAYER_STARTING_Y_LOC;
-  private int npcXloc = 3;
-  private int npcYLoc = 3;
   private String direction;
   private boolean isPlayingGame = true;
 
@@ -53,6 +49,9 @@ public class LittleZeldaGame {
 
   private void fillOutMap() {
 
+    mainPlayer.setXLoc(PLAYER_STARTING_X_LOC);
+    mainPlayer.setYLoc(PLAYER_STARTING_Y_LOC);
+
     // hard coded npcs
     // hestu
 
@@ -65,8 +64,8 @@ public class LittleZeldaGame {
 
     // korok-------------------------------------------------------
     korok.setName("Korok");
-    korok.setXLoc(3);
-    korok.setYLoc(3);
+    korok.setXLoc(0);
+    korok.setYLoc(2);
     map[0][2] = new Location("a korok", "It's a small leaf animal thing and it wants to talk to you.");
     map[0][2].setNonPlayableCharacter(korok);
     map[0][2].setHasNPC(true);
@@ -81,7 +80,7 @@ public class LittleZeldaGame {
     chest.setDescription("blah blah blah chest description");
     chest.setMatchingItem("key");
     map[0][0].setInteractiveItem(chest);
-    //map[3][1].addItem("key"); NEED TO REMOVE LATER
+    map[3][1].addItem("key");
 
     // random location npcs----------------------------------------
     bokoblin.setName("Bokoblin");
@@ -191,7 +190,7 @@ public class LittleZeldaGame {
                 if (korok.checkIfIsMatch("korok seed") && map[mainPlayer.getXLoc()][mainPlayer.getYLoc()].getHasInteractiveItem()) {
                   System.out.println("You gave the korok a korok seed! He seems happy to help you.");
                   System.out.println(
-                      "'Thanks for the seed! here's a hint to finding the maracas: they are in a chest around here somewhere. Find a key for you to open it!'"); //NEED TO CHANGE TO KOROK GOIVES
+                      "'Thanks for the seed! here's a hint to finding the maracas: they are in a chest around here somewhere. Find a key for you to open it!'");
                 } else {
                   System.out.println("The seed doesn't seem to work here.");
                 }

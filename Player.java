@@ -10,14 +10,14 @@ public class Player extends Character{
 //constructors----------------------------------------------------------------------------------------------------------
   
   public Player() {
-    this.setName("Zelda");
+    this.setName("unknown");
     this.health = 100;
     this.satchelItems = new ArrayList<String>();
   }
 
   public Player(String name) {
     this();
-    this.setName("Zelda");
+    this.setName("unknown");
   }
 
   //getters and setters-------------------------------------------------------------------------------------------------
