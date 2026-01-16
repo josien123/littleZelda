@@ -30,3 +30,5 @@ env/
 
 # Ignore generated docs
 /docs/CLASS_INTERACTIONS.md
+
+/.obsidian/
