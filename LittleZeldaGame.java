@@ -69,6 +69,7 @@ public class LittleZeldaGame {
     map[0][2].setNonPlayableCharacter(korok);
     map[0][2].setHasNPC(true);
     map[2][0].addItem("korok seed");
+    map[2][0].setHasItem(true);
 
     // hard code main player---------------------------------------
     mainPlayer.addToSatchel("bread");
@@ -80,6 +81,7 @@ public class LittleZeldaGame {
     chest.setMatchingItem("key");
     map[0][0].setInteractiveItem(chest);
     map[3][1].addItem("key");
+    map[3][1].setHasItem(true);
 
     // random location npc----------------------------------------
     bokoblin.setName("Bokoblin");
@@ -87,7 +89,7 @@ public class LittleZeldaGame {
     int bokoblinY = mapRandomInt(0, Y_MAP_SIZE - 1);
     // ensure bokoblin doesn't spawn on top of another npc or starting location
     while (map[bokoblinX][bokoblinY].getHasNPC() || map[bokoblinX][bokoblinY].getHasInteractiveItem()
-        || (bokoblinX == PLAYER_STARTING_X_LOC && bokoblinY == PLAYER_STARTING_Y_LOC) ) {//NEED TO FIX THAT IT SPAWNED ON THE KEY AND COULD SPAWN ON THE KOROK SEED.
+        || (bokoblinX == PLAYER_STARTING_X_LOC && bokoblinY == PLAYER_STARTING_Y_LOC) || map[bokoblinX][bokoblinY].getHasItem()) {
       bokoblinX = mapRandomInt(0, X_MAP_SIZE - 1);
       bokoblinY = mapRandomInt(0, Y_MAP_SIZE - 1);
     }
@@ -160,7 +162,7 @@ public class LittleZeldaGame {
          * INVENTORY: prints inventory arraylist
          */
         case "inventory":
-          mainPlayer.getInventory();
+          System.out.println(mainPlayer.getInventory());
           break;
 
         /*

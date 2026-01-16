@@ -6,7 +6,7 @@ The player can move north, west south or east, can check status, inventory, look
 
 To start type 'java LittleZeldagame'. First the player moves south to find hestu, who says to find his maracas. Then the player goes west to find a korok who will give information if given a korok seed. The player goes North to find the seed and brings it back to the korok. The korok says the key is around here. The player goes North East to find and unlock the chest and uses the maracas to win.
 
-diagrams/
+diagrams/classDiagramv2.pdf
 
 ## Local setup
 

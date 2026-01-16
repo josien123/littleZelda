@@ -10,6 +10,7 @@ public class Location {
   private ArrayList<String> items; // DO I NEED GET AND SET???
   private boolean hasNPC;
   private boolean hasInteractiveItem;
+  private boolean hasItem;
   private NonPlayableCharacter npc;
   private InteractiveItem interactiveItem;
 
@@ -38,6 +39,14 @@ public class Location {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public void setItems(ArrayList<String> items) {
+    this.items = items;
+  }
+
+  public ArrayList<String> getItems() {
+    return items;
   }
 
   public NonPlayableCharacter getNonPlayableCharacter() {
@@ -71,6 +80,15 @@ public class Location {
   public void setHasInteractiveItem(boolean hasInteractiveItem) {
     this.hasInteractiveItem = hasInteractiveItem;
   }
+
+  public boolean getHasItem() {
+    return hasItem;
+  }
+
+  public void setHasItem(boolean hasItem) {
+    this.hasItem = hasItem;
+  }
+
 
   // Inventory management
   // methods--------------------------------------------------------------------------------------

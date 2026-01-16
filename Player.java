@@ -16,8 +16,9 @@ public class Player extends Character{
   }
 
   public Player(String name) {
-    this();
-    this.setName("unknown");
+    super(name, 0,0);
+    this.health = 100;
+    this.satchelItems = new ArrayList<String>();
   }
 
   //getters and setters-------------------------------------------------------------------------------------------------
@@ -26,9 +27,9 @@ public class Player extends Character{
     this.health = health;
   }
 
-  public void getInventory() {
-    System.out.println("Inventory: " + satchelItems);
-  }
+  public String getInventory() {
+    return "Your satchel contains: " + satchelItems;
+    }
 
   public int getHealth() {
     return this.health;

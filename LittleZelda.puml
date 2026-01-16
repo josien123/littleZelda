@@ -1,0 +1,136 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Character {
+  - String name
+  - int xLoc
+  - int yLoc
+  + Character()
+  + Character(String, int, int)
+  + setName(String)
+  + getName() : String
+  + setXLoc(int)
+  + getXLoc() : int
+  + setYLoc(int)
+  + getYLoc() : int
+  + moveNorth()
+  + moveSouth()
+  + moveEast()
+  + moveWest()
+}
+
+class Player {
+  - int health
+  - ArrayList<String> satchelItems
+  + Player()
+  + Player(String)
+  + setHealth(int)
+  + getInventory() : String
+  + getHealth() : int
+  + checkIfInSatchel(String) : boolean
+  + removeFromSatchel(String) : boolean
+  + checkStatus() : String
+  + addHealth(int)
+  + subtractHealth(int)
+  + addToSatchel(String)
+}
+
+class NonPlayableCharacter {
+  - String mood
+  - String matchingItem
+  + NonPlayableCharacter()
+  + NonPlayableCharacter(String, String)
+  + setMood(String)
+  + getMood() : String
+  + setMatchingItem(String)
+  + getMatchingItem() : String
+  + checkIfIsMatch(String) : boolean
+}
+
+class InteractiveItem {
+  - String name
+  - String description
+  - String matchingItem
+  + InteractiveItem()
+  + InteractiveItem(String, String, String)
+  + setName(String)
+  + getName() : String
+  + setDescription(String)
+  + getDescription() : String
+  + setMatchingItem(String)
+  + getMatchingItem() : String
+  + checkIfIsMatch(String) : boolean
+}
+
+class Location {
+  - String name
+  - String description
+  - ArrayList<String> items
+  - boolean hasNPC
+  - boolean hasInteractiveItem
+  - boolean hasItem
+  - NonPlayableCharacter npc
+  - InteractiveItem interactiveItem
+  + Location(String, String)
+  + getName() : String
+  + setName(String)
+  + getDescription() : String
+  + setDescription(String)
+  + setItems(ArrayList<String>)
+  + getItems() : ArrayList<String>
+  + getNonPlayableCharacter() : NonPlayableCharacter
+  + setNonPlayableCharacter(NonPlayableCharacter)
+  + getInteractiveItem() : InteractiveItem
+  + setInteractiveItem(InteractiveItem)
+  + getHasNPC() : boolean
+  + setHasNPC(boolean)
+  + getHasInteractiveItem() : boolean
+  + setHasInteractiveItem(boolean)
+  + getHasItem() : boolean
+  + setHasItem(boolean)
+  + checkIfItemExists(String) : boolean
+  + addItem(String)
+  + removeItem(String) : boolean
+  + getItemsString() : String
+  + getNonPlayableCharacterString() : String
+  + getInteractiveItemString() : String
+  + toString() : String
+}
+
+class LittleZeldaGame {
+  - Location[][] map
+  - String direction
+  - boolean isPlayingGame
+  - Scanner input
+  - Player mainPlayer
+  - NonPlayableCharacter hestu
+  - NonPlayableCharacter bokoblin
+  - NonPlayableCharacter korok
+  - InteractiveItem chest
+  + start()
+  + createBlankMap()
+  + fillOutMap()
+  + gameLogic()
+  + runIntro()
+  + help()
+  + checkForCliffs() : boolean
+  + mapRandomInt(int,int) : int
+  + seeSurroundings()
+}
+
+class LittleZelda {
+  + main(String[]) : void
+}
+
+'Player' -|> 'Character'
+'NonPlayableCharacter' -|> 'Character'
+
+LittleZeldaGame o-- "4x4" Location : map
+LittleZeldaGame --> Player : mainPlayer
+LittleZeldaGame --> NonPlayableCharacter : hestu, bokoblin, korok
+LittleZeldaGame --> InteractiveItem : chest
+
+Location --> NonPlayableCharacter : npc
+Location --> InteractiveItem : interactiveItem
+
+@enduml
